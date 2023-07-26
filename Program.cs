@@ -101,7 +101,7 @@ FabricaDeEnemigos fe = new FabricaDeEnemigos();
 int n = 1, turno;
 int lectura;
 bool lec;
-int daño = 0;
+int daño;
 int encontrar;
 do
 {
@@ -126,6 +126,7 @@ do
     do
     {
         turno = 1;
+        daño = 0;
         do
         {
             Console.Clear();
@@ -139,13 +140,13 @@ do
             Console.WriteLine("|  (𝟙) 𝔹𝕒𝕤𝕚𝕔   |   |  (𝟚) 𝕊𝕡𝕖𝕔𝕚𝕒𝕝   |");
             Console.WriteLine("| (𝟛) 𝕌𝕝𝕥𝕚𝕞𝕒𝕥𝕖 |   | (𝟜) 𝔻𝕖𝕗𝕖𝕟𝕤𝕖   |");
             lec = int.TryParse(Console.ReadLine(), out lectura);
-            if (lectura == 2 & pj.Cargas < 1)
+            if (lectura == 2 & pjPeleador.Cargas < 1)
             {
                 Console.WriteLine("𝖄𝖔𝖚 𝖓𝖊𝖊𝖉 1 𝖈𝖍𝖆𝖗𝖌𝖊 𝖋𝖔𝖗 𝖙𝖍𝖎𝖘");
                 Thread.Sleep(1500);
                 lec = false;
             }
-            if (lectura == 3 & pj.Cargas < 3)
+            if (lectura == 3 & pjPeleador.Cargas < 3)
             {
                 Console.WriteLine("𝖄𝖔𝖚 𝖓𝖊𝖊𝖉 3 𝖈𝖍𝖆𝖗𝖌𝖊𝖘 𝖋𝖔𝖗 𝖙𝖍𝖎𝖘");
                 Thread.Sleep(1500);
@@ -175,6 +176,7 @@ do
                 break;
             case 4:
                 pjPeleador.Armor += 10;
+                Console.WriteLine("Armor +10");
                 break;
         }
         enemigo.Vida -= daño;
