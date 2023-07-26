@@ -14,6 +14,7 @@ public class Personaje
     private int armor; //1 a 10
     private int arma; //0 a 5 (depende del arma)
     private int vida; //100
+    private int cargas;
 
     public int Velocidad { get => velocidad; set => velocidad = value; }
     public int Destreza { get => destreza; set => destreza = value; }
@@ -23,6 +24,8 @@ public class Personaje
     public int Armor { get => armor; set => armor = value; }
     public int Arma { get => arma; set => arma = value; }
     public int Vida { get => vida; set => vida = value; }
+    public int Cargas { get => cargas; set => cargas = value; }
+
     ///////////////*DATOS*///////////////
     private string? tipo;
     private string? name;
@@ -94,12 +97,13 @@ public class FabricaDePjs
         // Cargar Caracteristicas
         pj.Velocidad = rand.Next(1,11);
         pj.Destreza = rand.Next(1,6);
-        pj.Fuerza = rand.Next(1,11);
-        pj.PoderMagico = 0;
+        pj.Fuerza = rand.Next(5,11);
+        pj.PoderMagico = rand.Next(1,6);
         pj.Armor = rand.Next(1,11);
         pj.Arma = 0;
         pj.Nivel = rand.Next(1,11);
         pj.Vida = 100;
+        pj.Cargas = 0;
         poten.Potenciador(pj);
         return pj;
     }

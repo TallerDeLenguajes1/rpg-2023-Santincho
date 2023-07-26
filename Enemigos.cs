@@ -28,11 +28,11 @@ public class FabricaDeEnemigos
         Enemigo enemigo = new Enemigo();
         Random rand = new Random();
         // Cargar Caracteristicas
-        enemigo.Velocidad = rand.Next(1,11);
+        enemigo.Velocidad = rand.Next(1,6);
         enemigo.Destreza = rand.Next(1,6);
         enemigo.Fuerza = rand.Next(1,11);
         enemigo.PoderMagico = rand.Next(1,6);
-        enemigo.Armor = rand.Next(1,11);
+        enemigo.Armor = rand.Next(1,6);
         enemigo.Nivel = nivel;
         enemigo.Vida = 50 * nivel;
         return enemigo;
@@ -42,7 +42,7 @@ public class FabricaDeEnemigos
         Enemigo jefe = new Enemigo();
         Random rand = new Random();
         // Cargar Caracteristicas
-        jefe.Velocidad = rand.Next(10,21);
+        jefe.Velocidad = rand.Next(1,6);
         jefe.Destreza = rand.Next(5,11);
         jefe.Fuerza = rand.Next(10,21);
         jefe.PoderMagico = rand.Next(5,16);
