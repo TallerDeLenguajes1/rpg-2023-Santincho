@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "Proyecto Carrear La Promo/1.0.0": {
+        "runtime": {
+          "Proyecto Carrear La Promo.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Proyecto Carrear La Promo/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using CharClass;
 namespace Character;
 
 public class Personaje
@@ -8,15 +9,19 @@ public class Personaje
     private int velocidad; //1 a 10
     private int destreza; //1 a 5
     private int fuerza; //1 a 10
+    private int poderMagico; //0
     private int nivel; //1 a 10 
     private int armor; //1 a 10
+    private int arma; //0 a 5 (depende del arma)
     private int vida; //100
 
     public int Velocidad { get => velocidad; set => velocidad = value; }
     public int Destreza { get => destreza; set => destreza = value; }
     public int Fuerza { get => fuerza; set => fuerza = value; }
+    public int PoderMagico { get => poderMagico; set => poderMagico = value; }
     public int Nivel { get => nivel; set => nivel = value; }
     public int Armor { get => armor; set => armor = value; }
+    public int Arma { get => arma; set => arma = value; }
     public int Vida { get => vida; set => vida = value; }
     ///////////////*DATOS*///////////////
     private string? tipo;
@@ -31,13 +36,27 @@ public class Personaje
     public DateTime Fdn { get => fdn; set => fdn = value; }
     public int Edad { get => edad; set => edad = value; }
 
+    public void MostrarPj(Personaje pj)
+    {
+        Console.WriteLine("ℂ𝕙𝕒𝕣𝕒𝕔𝕥𝕖𝕣 𝕀𝕟𝕗𝕠");
+        Console.WriteLine("𝕹𝖆𝖒𝖊: "+pj.Name);
+        Console.WriteLine("𝕿𝖞𝖕𝖊: "+pj.Tipo);
+        Console.WriteLine("𝕬𝖌𝖊: "+pj.Edad);
+        Console.WriteLine("ℂ𝕒𝕣𝕒𝕔𝕥𝕖𝕣𝕚𝕤𝕥𝕚𝕔𝕤");
+        Console.WriteLine("𝕾𝖙𝖗𝖊𝖓𝖌𝖙𝖍: "+pj.Fuerza);
+        Console.WriteLine("𝕽𝖊𝖘𝖎𝖘𝖙𝖊𝖓𝖈𝖊: "+pj.Armor);
+        Console.WriteLine("𝕷𝖊𝖛𝖊𝖑: "+pj.Nivel);
+        Console.WriteLine("𝕸𝖆𝖌𝖎𝖈𝖆𝖑 𝕻𝖔𝖜𝖊𝖗: "+pj.PoderMagico);
+    }
 }
 
 public class FabricaDePjs
 {
-    public Personaje CrearPj() {
+    public Personaje CrearPj() 
+    {
         Personaje pj = new Personaje();
         Random rand = new Random();
+        Tipos poten = new Tipos();
         // Carga de Datos
         string[] Tipo = {"Caballero", "Barbaro", "Espadachin", "Guerrero", "Ninja", "Astuto",
         "Asesino", "Ladron", "Mago", "Guardabosque"}; 
@@ -47,7 +66,8 @@ public class FabricaDePjs
         pj.Name = Name[rand.Next(0, 14)];
         string[] Nick = {"Iatele", "Nnsalei", "Oratharle", "Bleaahasa", "Phadanar", "Kel", "Fide", "Kylefier",
         "Uzo", "Wrau", "Variaisth"};
-        pj.Name = Nick[rand.Next(0, 11)];
+        pj.Name = Name[rand.Next(0, 14)];
+        pj.Nick = Nick[rand.Next(0,11)];
         string anioAct = DateTime.Now.ToString("yyyy");
         int anioA = 0;
         bool resul = int.TryParse(anioAct, out anioA);
@@ -75,32 +95,52 @@ public class FabricaDePjs
         pj.Velocidad = rand.Next(1,11);
         pj.Destreza = rand.Next(1,6);
         pj.Fuerza = rand.Next(1,11);
+        pj.PoderMagico = 0;
         pj.Armor = rand.Next(1,11);
+        pj.Arma = 0;
         pj.Nivel = rand.Next(1,11);
         pj.Vida = 100;
+        poten.Potenciador(pj);
         return pj;
     }
 
-    public class PersonajeJson
+}
+
+public class PersonajesJson
+{
+    static public void GuardarPj(string nombreArchivo,List<Personaje> Lista)
     {
-        public void GuardarPj(List<Personaje> lista, string nombre) {
-            //serializacion
-            string Json = JsonSerializer.Serialize(aserializar);
-            File.WriteAllText("personajes.json", Json);
-        }
-        public List<Personaje> LeerPj(string nombre) {
-            List<Personaje>listPj;
-            //deserializacion
-            string jsonString =  File.ReadAllText("personajes.json");
-            Personaje personajeDeserializado = JsonSerializer.Deserialize<Personaje>;
-            return listPj;
-        }
-
-        public bool Existe(string nombre) {
-            //verifico que exista el archivo
-            return;
-        }
-
+        String Json = JsonSerializer.Serialize(Lista);
+        File.WriteAllText(nombreArchivo, Json);
     }
+    static public List<Personaje> LeerPj(string NombreArchivo){
+        var ListadoPersonajes = new List<Personaje>();
 
+        string TextoJson = File.ReadAllText(NombreArchivo);
+
+        if (!string.IsNullOrEmpty(TextoJson))
+        {
+            ListadoPersonajes = JsonSerializer.Deserialize<List<Personaje>>(TextoJson)!;
+        }
+        
+        return ListadoPersonajes;
+    }
+    static public bool Existe(string NombreArchivo)
+    {
+        if (File.Exists(NombreArchivo))
+        {
+            var InfoArchivo = new FileInfo(NombreArchivo);
+
+            if (InfoArchivo.Length>0)
+            {
+                return true;
+            }else
+            {
+                return false;
+            }
+        }else
+        {
+            return false;
+        }
+    }
 }
