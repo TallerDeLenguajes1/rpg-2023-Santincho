@@ -13,7 +13,7 @@ var boredApiService = new BoredApiService();
 Random rand = new Random();
 int s = 1;
 int selec = rand.Next(1,11);
-
+Console.Clear();
 Console.WriteLine("𝔊𝔢𝔫𝔢𝔯𝔞𝔱𝔢 𝔫𝔢𝔴 𝔭𝔧𝔰?");
 Console.WriteLine("𝕻𝖗𝖊𝖘𝖘 ❞1❞ 𝖙𝖔 𝖌𝖊𝖓𝖊𝖗𝖆𝖙𝖊");
 Console.WriteLine("𝕻𝖗𝖊𝖘𝖘 𝖆𝖓𝖞 𝖔𝖙𝖍𝖊𝖗 𝖐𝖊𝖞 𝖙𝖔 𝖈𝖔𝖓𝖙𝖎𝖓𝖚𝖊...");
@@ -153,7 +153,6 @@ do
                 lec = false;
             }
         } while (!lec & lectura <= 4);
-        Console.WriteLine("Vida enemigo: " + enemigo.Vida);
         switch (lectura)
         {
             case 1:
@@ -192,8 +191,8 @@ do
         {
             pjPeleador.Armor -= 10;
         }
-        Thread.Sleep(2000);
-        
+        Console.WriteLine("𝕻𝖗𝖊𝖘𝖘 𝖆𝖓𝖞 𝖐𝖊𝖞 𝖙𝖔 𝖈𝖔𝖓𝖙𝖎𝖓𝖚𝖊...");
+        Console.ReadKey();
     } while (pjPeleador.Vida > 0 & enemigo.Vida > 0);
     if (enemigo.Vida <= 0)
     {
@@ -205,16 +204,18 @@ do
         Console.WriteLine("𝕻𝖗𝖊𝖘𝖘 𝖆𝖓𝖞 𝖐𝖊𝖞 𝖙𝖔 𝖈𝖔𝖓𝖙𝖎𝖓𝖚𝖊...");
         Console.WriteLine($"Something you can do if u want: {randomActivity}");
         Console.ReadKey();
-        encontrar = rand.Next(1,4);
+        encontrar = rand.Next(1,3);
         if (encontrar == 1)
         {
             Console.WriteLine("𝖄𝖔𝖚 𝖋𝖔𝖚𝖓𝖉 𝖘𝖔𝖒𝖊𝖙𝖍𝖎𝖓𝖌...");
             arma.MejoraArm(pjPeleador);
+            Console.WriteLine("𝕻𝖗𝖊𝖘𝖘 𝖆𝖓𝖞 𝖐𝖊𝖞 𝖙𝖔 𝖈𝖔𝖓𝖙𝖎𝖓𝖚𝖊...");
+            Console.ReadKey();
         }
     }
 } while (pjPeleador.Vida > 0 & n != 10);
 Console.Clear();
-if (n == 10)
+if (pjPeleador.Vida > 0)
 {
     Console.WriteLine("░░░░░░░░░░░░░░░░░░░░░░░░░░█▄");
     Console.WriteLine("░▄▄▄▄▄▄░░░░░░░░░░░░░▄▄▄▄▄░░█▄");
