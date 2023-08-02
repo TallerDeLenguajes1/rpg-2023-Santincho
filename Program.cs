@@ -213,7 +213,7 @@ do
             Console.ReadKey();
         }
     }
-} while (pjPeleador.Vida > 0 & n != 10);
+} while (pjPeleador.Vida > 0 & n <= 10);
 Console.Clear();
 if (pjPeleador.Vida > 0)
 {
